@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "buefy": "^0.8.8",
-    "bulma-helpers": "^0.3.8",
+    "faunadb": "^2.13.1",
     "gridsome": "^0.7.0",
     "gridsome-source-google-sheets": "^0.3.1",
     "js-sha1": "^0.6.0"
