@@ -2,8 +2,6 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import DefaultLayout from '~/layouts/Default.vue'
-import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
 import LottieAnimation from 'lottie-vuejs' // import lottie-vuejs
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
@@ -35,8 +33,5 @@ export default function (Vue, {
   appOptions.vuetify = new Vuetify(opts);
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
-  Vue.use(Buefy, {
-    defaultIconPack: 'fas' // Font Awesome Solid 
-  })
   Vue.use(LottieAnimation); // add lottie-animation to your global scope
 }
