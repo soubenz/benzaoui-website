@@ -1,7 +1,6 @@
 <template>
   <layout>
     <v-row justify="center">
-      {{ frontendTechs }}
       <v-col cols="6">
         <lottie-animation path="../../data/it.json" />
       </v-col>
@@ -31,69 +30,13 @@
           </v-tabs>
 
           <v-tabs-items v-model="tab">
+            <v-tab-item><techs-list :data="devopsTechs" /> </v-tab-item>
+            <v-tab-item><techs-list :data="backendTechs" /> </v-tab-item>
             <v-tab-item>
-              <v-card v-for="item in devopsTechs" :key="item.node.id">
-                <!-- https://github.com/gridsome/gridsome/issues/292 -->
-                <g-image
-                  class="responsive-image"
-                  :src="
-                    require(`!!assets-loader?width=250!@images/${
-                      item.node.content.image
-                    }.png`)
-                  "
-                />
-                <v-card-title class="justify-center"
-                  >{{ item.node.content.title }}
-                </v-card-title>
-              </v-card>
+              <techs-list :data="frontendTechs" />
             </v-tab-item>
             <v-tab-item>
-              <v-card v-for="item in backendTechs" :key="item.node.id">
-                <!-- https://github.com/gridsome/gridsome/issues/292 -->
-                <g-image
-                  class="responsive-image"
-                  :src="
-                    require(`!!assets-loader?width=250!@images/${
-                      item.node.content.image
-                    }.png`)
-                  "
-                />
-                <v-card-title class="justify-center">{{
-                  item.node.content.title
-                }}</v-card-title>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card v-for="item in frontendTechs" :key="item.node.id">
-                <!-- https://github.com/gridsome/gridsome/issues/292 -->
-                <g-image
-                  class="responsive-image"
-                  :src="
-                    require(`!!assets-loader?width=250!@images/${
-                      item.node.content.image
-                    }.png`)
-                  "
-                />
-                <v-card-title class="justify-center"
-                  >{{ item.node.content.title }}
-                </v-card-title>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card v-for="item in cloudTechs" :key="item.node.id">
-                <!-- https://github.com/gridsome/gridsome/issues/292 -->
-                <g-image
-                  class="responsive-image"
-                  :src="
-                    require(`!!assets-loader?width=250!@images/${
-                      item.node.content.image
-                    }.png`)
-                  "
-                />
-                <v-card-title class="justify-center"
-                  >{{ item.node.content.title }}
-                </v-card-title>
-              </v-card>
+              <techs-list :data="cloudTechs" />
             </v-tab-item>
           </v-tabs-items>
         </v-card>
@@ -123,9 +66,10 @@ query {
 }
 </page-query>
 <script>
+import TechsList from "@/components/TechsList.vue";
 // import VueTypedJs from "vue-typed-js";
 export default {
-  // components: { VueTypedJs },
+  components: { TechsList },
 
   metaInfo: {
     title: "Home",
