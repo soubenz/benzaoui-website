@@ -5,6 +5,7 @@ import DefaultLayout from '~/layouts/Default.vue'
 import LottieAnimation from 'lottie-vuejs' // import lottie-vuejs
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import VueTypedJs from 'vue-typed-js'
 
 export default function (Vue, {
 
@@ -34,4 +35,5 @@ export default function (Vue, {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
   Vue.use(LottieAnimation); // add lottie-animation to your global scope
+  Vue.use(VueTypedJs)
 }
