@@ -2,31 +2,45 @@
   <layout page-title="My Projects">
     <!-- <v-row justify-center>{{$page.projects.edges[1].node}}</v-row> -->
     <v-row>
-      <v-col v-for="(edge, i) in filteredEntries" :key="i" cols="4">
-        <v-card min-height="350" shaped>
-          <!-- <v-img
-            class="white--text align-end"
+      <v-col v-for="(edge, i) in filteredEntries" :key="i" cols="12" sm="4">
+        <v-card class="d-flex align-center flex-column" height="100%" shaped>
+          <v-img
+            class="white--text align-center"
             height="300px"
+            max-height="300px"
             src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-          ></v-img>-->
+          ></v-img>
 
-          <v-card-title class="headline" v-text="edge.node.content.title"></v-card-title>
-          <v-card-text class="text--primary">
-            <div>{{edge.node.content.desc}}</div>
-            <v-chip
-              class="ma-2"
-              color="amber darken-1"
-              large
-              v-for="(tech, i) in edge.node.content.techs.split(',')"
-              :key="i"
+          <v-card-title
+            class="headline"
+            v-text="edge.node.content.title"
+          ></v-card-title>
+          <v-card-text>
+            <v-row>
+              <div class="mb-2">
+                {{ edge.node.content.desc }}
+              </div></v-row
             >
-              <v-icon left>{{setIcon(tech)}}</v-icon>
-              {{tech}}
-            </v-chip>
+            <v-row
+              ><v-chip
+                class=" ma-1"
+                dark
+                color="grey darken-3"
+                v-for="(tech, i) in edge.node.content.techs.split(',')"
+                :key="i"
+              >
+                <!-- <v-icon left>{{setIcon(tech)}}</v-icon> -->
+                {{ tech }}
+              </v-chip></v-row
+            >
           </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="amber" :href="edge.node.content.url">Preview</v-btn>
+          <v-card-actions class="mt-auto d-flex align-self-end ">
+            <v-btn color="amber" rounded :href="edge.node.content.url"
+              >Preview</v-btn
+            >
+            <v-btn color="amber" rounded :href="edge.node.content.url"
+              >Source</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
@@ -54,14 +68,14 @@ query {
 export default {
   data: () => ({
     colors: ["indigo", "warning"],
-    slides: ["First", "Second"]
+    slides: ["First", "Second"],
   }),
   computed: {
     filteredEntries() {
       return this.$page.projects.edges.filter(
-        edge => edge.node.content.component == "project"
+        (edge) => edge.node.content.component == "project"
       );
-    }
+    },
   },
   methods: {
     setIcon(tech) {
@@ -79,7 +93,16 @@ export default {
         default:
           break;
       }
-    }
-  }
+    },
+  },
 };
 </script>
+<style>
+.flexcard {
+  display: flex;
+  flex-direction: column;
+}
+.flexcard .v-toolbar {
+  flex: 0;
+}
+</style>
