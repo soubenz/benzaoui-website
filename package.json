@@ -10,17 +10,17 @@
     "@gridsome/source-strapi": "^0.1.0",
     "axios": "^0.19.0",
     "faunadb": "^2.13.1",
-    "gridsome": "^0.7.0",
+    "gridsome": "^0.7.14",
     "gridsome-source-google-docs": "^0.1.0",
     "gridsome-source-google-sheets": "^0.3.1",
     "gridsome-source-storyblok": "^1.0.0",
     "js-sha1": "^0.6.0",
     "lottie-vuejs": "^0.3.6",
     "vue-typed-js": "^0.1.2",
-    "vuetify": "2.4.2"
+    "vuetify": "2.4.0"
   },
   "devDependencies": {
     "@mdi/js": "^5.8.55",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^2.5.2"
   }
 }

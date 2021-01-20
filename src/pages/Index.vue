@@ -6,16 +6,18 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-      <vue-typed-js
-        class="ma-4"
-        :loop="true"
-        :showCursor="false"
-        :fadeOut="false"
-        :typeSpeed="50"
-        :strings="['/Engineering', '/Cloud', '/Web', '/DevOps']"
-      >
-        <span class="display-3 typing amber--text text--darken-4"></span>
-      </vue-typed-js>
+      <ClientOnly>
+        <vue-typed-js
+          class="ma-4"
+          :loop="true"
+          :showCursor="false"
+          :fadeOut="false"
+          :typeSpeed="50"
+          :strings="['/Engineering', '/Cloud', '/Web', '/DevOps']"
+        >
+          <span class="display-3 typing amber--text text--darken-4"></span>
+        </vue-typed-js>
+      </ClientOnly>
     </v-row>
     <!-- <v-divider class="ma-4" /> -->
 
@@ -67,9 +69,16 @@ query {
 </page-query>
 <script>
 import TechsList from "@/components/TechsList.vue";
+import LottieAnimation from "@/components/LottieAnimation.vue";
 // import VueTypedJs from "vue-typed-js";
 export default {
-  components: { TechsList },
+  components: {
+    TechsList,
+    VueTypedJs: () =>
+      import("vue-typed-js")
+        .then((m) => m.VueTypedJs)
+        .catch(),
+  },
 
   metaInfo: {
     title: "Home",

@@ -12,12 +12,12 @@
 
       <!-- <v-text-field solo-inverted flat hide-details label="Search" prepend-inner-icon="search" /> -->
 
-      <v-spacer />
-    </v-app-bar>
-    <navigation-side-drawer
-      v-model="drawer"
-      :mini-variant="$vuetify.breakpoint.mobile"
-    />
+      <v-spacer /> </v-app-bar
+    ><ClientOnly>
+      <navigation-side-drawer
+        v-model="drawer"
+        :mini-variant="$vuetify.breakpoint.mobile"
+    /></ClientOnly>
     <!-- <navigation-side-drawer v-model="drawer" :mini-variant="true" /> -->
     <v-main>
       <v-container>
