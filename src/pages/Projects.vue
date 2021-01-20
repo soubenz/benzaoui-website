@@ -2,9 +2,10 @@
   <layout page-title="My Projects">
     <!-- <v-row justify-center>{{$page.projects.edges[1].node}}</v-row> -->
     <v-row>
-      <v-col v-for="edge in filteredEntries" :key="edge.id" cols="12" sm="4">
+      <v-col v-for="edge in filteredEntries" :key="edge.id" sm="4">
         <v-card class="d-flex align-center flex-column" height="100%" shaped>
           <g-image
+            class="d-flex"
             :src="
               require(`!!assets-loader?fit=fill!@images/projects/${
                 edge.node.content.image
