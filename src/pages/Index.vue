@@ -1,119 +1,114 @@
 <template>
-  <Layout>
-    <h1 class="title has-text-centered">TV Series Quotes</h1>
-    <b-carousel>
-      <b-carousel-item v-for="(edge, i) in sample" :key="i">
-        <div class="hero is-medium">
-          <div class="hero-body has-text-centered">
-            <figure class="image is-16by9">
-              <g-image :src="edge.node.image.src" :alt="edge.node.text" />
-            </figure>
-          </div>
-        </div>
-      </b-carousel-item>
-    </b-carousel>
-    <div class="columns is-multiline">
-      <span
-        class="card column is-one-quarter has-margin-50"
-        v-for="edge in sortData"
-        :key="edge.node.id"
+  <layout>
+    <v-row justify="center">
+      <v-col cols="6">
+        <lottie-animation path="../../data/it.json" />
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <vue-typed-js
+        class="ma-4"
+        :loop="true"
+        :showCursor="false"
+        :fadeOut="false"
+        :typeSpeed="50"
+        :strings="['/Engineering', '/Cloud', '/Web', '/DevOps']"
       >
-        <g-link class="card-content has-text-centered" :to="getLink(edge.node.id)">
-          <p class="title">{{edge.node.title}}</p>
-        </g-link>
-      </span>
-    </div>
-    <!-- <p class="home-links">
-        <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-        <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>-->
-  </Layout>
+        <span class="display-3 typing amber--text text--darken-4"></span>
+      </vue-typed-js>
+    </v-row>
+    <!-- <v-divider class="ma-4" /> -->
 
-  <!-- <div class="container"> -->
+    <v-row justify="center">
+      <v-col cols="10">
+        <v-card elevation="10">
+          <v-card-title class="text-center justify-center py-6">
+            <h1 class=" text-h3">My ♥ Stack</h1>
+          </v-card-title>
+          <v-tabs v-model="tab" background-color="transparent" grow show-arrows>
+            <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
+          </v-tabs>
 
-  <!-- </div>
-  </section>-->
+          <v-tabs-items v-model="tab">
+            <v-tab-item><techs-list :data="devopsTechs" /> </v-tab-item>
+            <v-tab-item><techs-list :data="backendTechs" /> </v-tab-item>
+            <v-tab-item>
+              <techs-list :data="frontendTechs" />
+            </v-tab-item>
+            <v-tab-item>
+              <techs-list :data="cloudTechs" />
+            </v-tab-item>
+          </v-tabs-items>
+        </v-card>
+      </v-col>
+    </v-row>
+    <!-- <div>About me</div>
+
+    <div>How I built this website?</div>
+    <div>Skills</div> -->
+  </layout>
 </template>
 <page-query>
 query {
-  series: allSeries {
+  stack: allStoryblokEntry {
     edges {
       node {
         id
-        title
-        
+        #items {type text id href} 
+        name
+        full_slug
+        content
+       
+				        
       }
     }
   }
-  quotes: allQuotes { 
-    edges {
-      node {
-        image
-        text
-
-
-  }
-}}
 }
 </page-query>
-
 <script>
-import "bulma-helpers/css/bulma-helpers.css";
+import TechsList from "@/components/TechsList.vue";
+// import VueTypedJs from "vue-typed-js";
 export default {
-  metaInfo: {
-    title: "TV Series Quotes"
-  },
-  data() {
-    return {
-      carousels: [
-        { text: "Slide 1", color: "primary" },
-        { text: "Slide 2", color: "info" },
-        { text: "Slide 3", color: "success" },
-        { text: "Slide 4", color: "warning" },
-        { text: "Slide 5", color: "danger" }
-      ]
-    };
-  },
-  computed: {
-    sortData() {
-      const sortedData = this.$page.series.edges.sort((a, b) =>
-        a.node.id > b.node.id ? 1 : -1
-      );
-      return sortedData;
-    },
-    sample() {
-      // let RandomData = this.$page.quotes.edges[
-      // Math.floor(Math.random() * this.$page.quotes.edges.length)
-      // ];
-      let count = 5;
-      let _arr = [...this.$page.quotes.edges];
-      return [...Array(count)].map(
-        () => _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0]
-      );
-    }
-  },
+  components: { TechsList },
 
-  methods: {
-    getLink(id) {
-      //   let imageUrl = "/images/0a07c859915761d54cf049a1c771873a30d3b563";
-      let url = "/series/" + id + "/";
-      return url;
+  metaInfo: {
+    title: "Home",
+  },
+  data: () => ({
+    tab: null,
+    items: ["DevOps", "Backend", "Frontend", "Cloud"],
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  }),
+  computed: {
+    frontendTechs() {
+      return this.$page.stack.edges.filter(
+        (edge) =>
+          edge.node.content.component == "stack" &&
+          edge.node.content.type == "frontend"
+      );
     },
-    lowerCase(stringToLower) {
-      let title = stringToLower.toLowerCase();
-      return title;
-    }
-  }
+    backendTechs() {
+      return this.$page.stack.edges.filter(
+        (edge) =>
+          edge.node.content.component == "stack" &&
+          edge.node.content.type == "backend"
+      );
+    },
+    devopsTechs() {
+      return this.$page.stack.edges.filter(
+        (edge) =>
+          edge.node.content.component == "stack" &&
+          edge.node.content.type == "devops"
+      );
+    },
+    cloudTechs() {
+      return this.$page.stack.edges.filter(
+        (edge) =>
+          edge.node.content.component == "stack" &&
+          edge.node.content.type == "cloud"
+      );
+    },
+  },
 };
 </script>
-
-<style>
-/* 
-*:not(path) {
-  color: hsla(210, 100%, 100%, 0.9) !important;
-  background: hsla(210, 100%, 50%, 0.5) !important;
-  outline: solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
-
-  box-shadow: none !important;
-} */
-</style>
