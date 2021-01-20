@@ -74,17 +74,7 @@ export default {
         href: "https://github.com/soubenz",
         activated: true,
       },
-      { icon: "email", text: "Email me", to: "/contact/", activated: true },
-
-      // { divider: true },
-      // { icon: "archive", text: "Archive" },
-      // { icon: "delete", text: "Trash" },
-      // { divider: true },
-      // { icon: "settings", text: "Settings" },
-      // { icon: "chat_bubble", text: "Trash" },
-      // { icon: "help", text: "Help" },
-      // { icon: "phonelink", text: "App downloads" },
-      // { icon: "keyboard", text: "Keyboard shortcuts" }
+      { icon: "email", text: "Email me", to: "/contact/", activated: false },
     ],
   }),
 };
