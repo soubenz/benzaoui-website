@@ -2,14 +2,15 @@
   <layout page-title="My Projects">
     <!-- <v-row justify-center>{{$page.projects.edges[1].node}}</v-row> -->
     <v-row>
-      <v-col v-for="(edge, i) in filteredEntries" :key="i" cols="12" sm="4">
+      <v-col v-for="edge in filteredEntries" :key="edge.id" cols="12" sm="4">
         <v-card class="d-flex align-center flex-column" height="100%" shaped>
-          <v-img
-            class="white--text align-center"
-            height="300px"
-            max-height="300px"
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-          ></v-img>
+          <g-image
+            :src="
+              require(`!!assets-loader?fit=fill!@images/projects/${
+                edge.node.content.image
+              }.png`)
+            "
+          />
 
           <v-card-title
             class="headline"
@@ -38,7 +39,7 @@
             <v-btn color="amber" rounded :href="edge.node.content.url"
               >Preview</v-btn
             >
-            <v-btn color="amber" rounded :href="edge.node.content.url"
+            <v-btn color="amber" rounded :href="edge.node.content.source"
               >Source</v-btn
             >
           </v-card-actions>
