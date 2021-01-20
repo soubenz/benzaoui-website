@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="3" v-for="item in data" :key="item.node.id">
+    <v-col cols="12" sm="4" v-for="item in data" :key="item.node.id">
       <v-card>
         <!-- <v-col> -->
         <!-- https://github.com/gridsome/gridsome/issues/292 -->
