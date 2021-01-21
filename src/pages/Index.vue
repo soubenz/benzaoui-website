@@ -73,6 +73,7 @@ import LottieAnimation from "@/components/LottieAnimation.vue";
 // import VueTypedJs from "vue-typed-js";
 export default {
   components: {
+    LottieAnimation,
     TechsList,
     VueTypedJs: () =>
       import("vue-typed-js")
